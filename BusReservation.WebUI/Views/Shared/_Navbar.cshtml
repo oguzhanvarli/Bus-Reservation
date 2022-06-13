@@ -1,0 +1,51 @@
+﻿<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <img src="/images/logo2.png" class="navbar-brand img-fluid col-md-2 col-2"  />
+            <button class="navbar-toggler col-sm-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between">
+                <div>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Admin" asp-action="ListRoutes">Rotalar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Admin" asp-action="TicketList">Biletler</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div>
+                    <ul class="mr-4 navbar-nav flex-grow-1">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+
+                            <li class="nav-link pointer-event"><a asp-controller="Account" asp-action="Login" class="nav-link"><i class="fa-solid fa-user fa-xl"></i></a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <p class="nav-link">Merhaba @User.Identity.Name</p>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register">Admin Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+</header>

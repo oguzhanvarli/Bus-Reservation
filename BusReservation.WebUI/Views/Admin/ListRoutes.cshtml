@@ -1,0 +1,51 @@
+﻿@model List<Route>
+@section Css{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#routeList').DataTable();
+        });
+    </script>
+}
+<a class="btn btn-sm btn-outline-primary my-3" asp-action="CreateRoute">Sefer Ekle!</a>
+<table class="table table-bordered table-hover cell-border" id="routeList">
+    <thead>
+        <tr>
+            <td>Rota Başlangıç</td>
+            <td>Rota 1. Durak*</td>
+            <td>Rota 2. Durak*</td>
+            <td>Rota 3. Durak*</td>
+            <td>Rota 4. Durak*</td>
+            <td>Rota Bitiş</td>
+            <td>Rota Tarihi</td>
+            <td>Rota Başlangıç Saati</td>
+            <td>Sil</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var route in Model)
+        {
+            <tr>
+                <td>@route.RouteStart</td>
+                <td>@route.RouteFirstTransfer</td>
+                <td>@route.RouteSecondTransfer</td>
+                <td>@route.RouteThirdTransfer</td>
+                <td>@route.RouteFourthTransfer</td>
+                <td>@route.RouteFinish</td>
+                <td>@route.RouteDate</td>
+                <td>@route.RouteClock</td>
+                <td>
+                    <form action="DeleteRoute" method="post" class="d-inline">
+                        <input type="hidden" name="routeId" value="@route.RouteId" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<p>* Opsiyonel.</p>

@@ -1,0 +1,43 @@
+﻿@model Ticket
+<div class="row">
+
+    <table class="table table-bordered table-primary">
+        <thead>
+            <tr class="text-center">
+                <th scope="col">Ticket PNR No</th>
+                <th scope="col">İsim</th>
+                <th scope="col">Soyisim</th>
+                <th scope="col">Cinsiyet</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Nereden</th>
+                <th scope="col">Nereye</th>
+                <th scope="col">Koltuk No</th>
+                <th scope="col">Tarih</th>
+                <th scope="col">Saat</th>
+                <th scope="col">İptal Et</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>@Model.TicketPnrNo</td>
+                <td>@Model.TicketName</td>
+                <td>@Model.TicketSurname</td>
+                <td>@Model.TicketGender</td>
+                <td>@Model.TicketMail</td>
+                <td>@Model.TicketFromWhere</td>
+                <td>@Model.TicketToWhere</td>
+                <td>@Model.TicketSeatNo</td>
+                <td>@Model.TicketDate</td>
+                <td>@Model.TicketClock</td>
+                <td>
+                    <form asp-action="TicketDelete" method="post" class="d-inline">
+                        <input type="hidden" name="ticketId" value="@Model.TicketId" />
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</div>

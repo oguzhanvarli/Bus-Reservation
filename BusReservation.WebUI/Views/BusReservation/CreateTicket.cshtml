@@ -1,0 +1,45 @@
+﻿@model Ticket
+<h4 class="mt-2 text-success text-center">Sayın @Model.TicketName Rezervasyon Bilgileriniz Aşağıdadır.</h4>
+<div class="tick-animation">
+    <div class="trigger"></div>
+    <svg version="1.1" id="tick" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 37 37" style="enable-background:new 0 0 37 37;" xml:space="preserve">
+<path class="circ path" style="fill:none;stroke:#000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" d="
+	M30.5,6.5L30.5,6.5c6.6,6.6,6.6,17.4,0,24l0,0c-6.6,6.6-17.4,6.6-24,0l0,0c-6.6-6.6-6.6-17.4,0-24l0,0C13.1-0.2,23.9-0.2,30.5,6.5z" />
+<polyline class="tick path" style="fill:none;stroke:#000;stroke-width:3;stroke-linejoin:round;stroke-miterlimit:10;" points="
+	11.6,20 15.9,24.2 26.4,13.8 " />
+</svg>
+</div>
+
+<table class="table table-bordered table-primary">
+    <thead>
+        <tr class="text-center">
+            <th scope="col">Ticket PNR No</th>
+            <th scope="col">İsim</th>
+            <th scope="col">Soyisim</th>
+            <th scope="col">Cinsiyet</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Nereden</th>
+            <th scope="col">Nereye</th>
+            <th scope="col">Koltuk No</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Saat</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center">
+            <td>@Model.TicketPnrNo</td>
+            <td>@Model.TicketName</td>
+            <td>@Model.TicketSurname</td>
+            <td>@Model.TicketGender</td>
+            <td>@Model.TicketMail</td>
+            <td>@Model.TicketFromWhere</td>
+            <td>@Model.TicketToWhere</td>
+            <td>@Model.TicketSeatNo</td>
+            <td>@Model.TicketDate</td>
+            <td>@Model.TicketClock</td>
+        </tr>
+    </tbody>
+</table>
+<h5 class="text-lg-right">Rezervasyon bilgileriniz mail adresinize gönderilmiştir.</h5>

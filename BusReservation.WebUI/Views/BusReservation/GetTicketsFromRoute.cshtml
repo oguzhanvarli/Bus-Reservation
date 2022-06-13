@@ -1,0 +1,80 @@
+﻿@model List<Ticket>
+
+
+<h4 class="text-center mb-4">@ViewBag.From - @ViewBag.ToWhere</h4>
+
+
+<div class="seat-row">
+    <ul class="d-flex">
+        <li class="seat-info m-1 d-flex">
+            <div class="seat selected-woman seat-pre"></div>
+            <div class="ms-3">
+                <p>Kadın Dolu</p>
+                <p>Koltuk</p>
+            </div>
+        </li>
+        <li class="seat-info m-1 d-flex">
+            <div class="seat selected-man seat-pre"></div>
+            <div class="ms-3">
+                <p>Erkek Dolu</p>
+                <p>Koltuk</p>
+            </div>
+        </li>
+        <li class="seat-info m-1 d-flex">
+            <div class="seat empty-seat seat-pre"></div>
+            <div class="ms-3">
+                <p>Boş Koltuk</p>
+                <p>Alınabilir</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<center>
+    <form type="submit" asp-controller="BusReservation" asp-action="GetPassangerInfo" class="col-md-4">
+        <div class="seat-row parent">
+            @for (int i = 1; i < 40; i++)
+            {
+                @foreach (var item in Model)
+                {
+
+                    List<int> SelectedSeats = new List<int>();
+                    if (i == item.TicketSeatNo)
+                    {
+                        SelectedSeats.Add(i);
+
+                        foreach (var seat in SelectedSeats)
+                        {
+                            for (int j = 1; j <= i; j++)
+                            {
+                                if (j == seat)
+                                {
+                                    @if (item.TicketGender == "Erkek")
+                                    {
+                                        <div class="seat selected-man child">@j</div>
+                                    }
+                                    else if (item.TicketGender == "Kadın")
+                                    {
+                                        <div class="seat selected-woman child">@j</div>
+                                    }
+                                    i++;
+                                }
+                            }
+                        }
+                    }
+                }
+                <button type="submit" class="seat child" value="@i" name="seatNo">@i</button>
+            }
+        </div>
+        <input type="hidden" name="FromWhere" value="@ViewBag.From" />
+        <input type="hidden" name="ToWhere" value="@ViewBag.ToWhere" />
+        <input type="hidden" name="routeId" value="@ViewBag.x" />
+    </form>
+</center>
+
+
+
+
+
+
+
+

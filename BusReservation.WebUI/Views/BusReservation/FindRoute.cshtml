@@ -1,0 +1,145 @@
+﻿@model List<Route>
+<h4 class="my-4">@ViewBag.From - @ViewBag.ToWhere Otobüs Seferlerimiz</h4>
+<form asp-controller="BusReservation" asp-action="GetTicketsFromRoute">
+    <div class="row">
+        
+        <div class="col-md-12 row">
+            @foreach (var item in Model)
+            {
+                <input type="hidden" name="id" value="@item.RouteId"/>
+                <div class="card text-center">
+                    <div class="card-header">@item.RouteDate</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@ViewBag.From - @ViewBag.ToWhere</h5>
+                        <p class="my-3 row">
+                            <ul class="list-group list-group-horizontal-md justify-content-center">
+                                <li class="list-group-item">
+                                    @if (item.RouteStart == ViewBag.From)
+                                    {
+                                        <strong>@ViewBag.From</strong>
+                                        <input type="hidden" value="@item.RouteStart" name="cityFirst"/>
+                                    }
+                                    else
+                                    {
+                                        <p>@item.RouteStart</p>
+                                    }
+                                </li>
+                                @if (item.RouteFirstTransfer != null)
+                                {
+                            <li class="list-group-item">
+                                @if (item.RouteFirstTransfer == ViewBag.From)
+                                {
+                                    <strong>@ViewBag.From</strong>
+                                    <input type="hidden" value="@item.RouteFirstTransfer" name="cityFirst"/>
+
+                                }
+                                else if (item.RouteFirstTransfer == ViewBag.ToWhere)
+                                {
+                                    <strong>@ViewBag.ToWhere</strong>
+                                    <input type="hidden" value="@item.RouteFirstTransfer" name="cityLast"/>
+
+                                }
+                                else
+                                {
+                                    <p>@item.RouteFirstTransfer</p>
+                                }
+                            </li>
+                                }
+                                @if (item.RouteSecondTransfer != null)
+                                {
+                            <li class="list-group-item">
+                                @if (item.RouteSecondTransfer == ViewBag.From)
+                                {
+                                    <input type="hidden" value="@item.RouteSecondTransfer" name="cityFirst"/>
+                                    <strong>@ViewBag.From</strong>
+                                }
+                                else if (item.RouteSecondTransfer == ViewBag.ToWhere)
+                                {
+                                    <strong>@ViewBag.ToWhere</strong>
+                                    <input type="hidden" value="@item.RouteSecondTransfer" name="cityLast" />
+
+                                }
+                                else
+                                {
+                                    <p>@item.RouteSecondTransfer</p>
+                                }
+                            </li>
+                                }
+
+                                @if (item.RouteThirdTransfer != null)
+                                {
+                            <li class="list-group-item">
+                                @if (item.RouteThirdTransfer == ViewBag.From)
+                                {
+                                    <strong>@ViewBag.From</strong>
+                                    <input type="hidden" value="@item.RouteThirdTransfer" name="cityFirst"/>
+
+                                }
+                                else if (item.RouteThirdTransfer == ViewBag.ToWhere)
+                                {
+                                    <strong>@ViewBag.ToWhere</strong>
+                                    <input type="hidden" value="@item.RouteThirdTransfer" name="cityLast"/>
+
+                                }
+                                else
+                                {
+                                    <p>@item.RouteThirdTransfer</p>
+                                }
+                            </li>
+                                }
+
+                                @if (item.RouteFourthTransfer != null)
+                                {
+                            <li class="list-group-item">
+                                @if (item.RouteFourthTransfer == ViewBag.From)
+                                {
+                                    <strong>@ViewBag.From</strong>
+                                    <input type="hidden" value="@item.RouteFourthTransfer" name="cityFirst"/>
+
+                                }
+                                else if (item.RouteFourthTransfer == ViewBag.ToWhere)
+                                {
+                                    <strong>@ViewBag.ToWhere</strong>
+                                    <input type="hidden" value="@item.RouteFourthTransfer" name="cityLast"/>
+
+                                }
+                                else
+                                {
+                                    <p>@item.RouteFourthTransfer</p>
+                                }
+                            </li>
+                                }
+                            <li class="list-group-item">
+                                @if (item.RouteFinish == ViewBag.ToWhere)
+                                {
+                                    <strong>@ViewBag.ToWhere</strong>
+                                    <input type="hidden" value="@item.RouteFinish" name="cityLast"/>
+
+                                }
+                                else
+                                {
+                                    <p>@item.RouteFinish</p>
+                                }
+                            </li>
+                            </ul>
+                        </p>
+                        <div class="row justify-content-around my-4">
+                            <div class="col-md-3">
+                                <h5>Saat : @item.RouteClock</h5>
+                                <h5>Fiyat : <i class="fa-solid fa-turkish-lira-sign"> @item.RoutePrice</i></h5>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-outline-primary" id="open-seat">Koltuk Seç</button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            }
+
+
+        </div>
+
+    </div>
+</form>

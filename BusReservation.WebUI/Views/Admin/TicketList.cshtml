@@ -1,0 +1,58 @@
+﻿@model List<Ticket>
+@section Css{
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+@section Scripts {
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#ticketList').DataTable();
+        });
+    </script>
+}
+
+<div class="container shadow mt-5" style="text-align:center;">
+    <h6 class="display-5">Bilet Listesi</h6>
+
+   
+        <table class="table table table-bordered shadow-sm" id="ticketList">
+            <thead>
+                <tr>
+                    <th style="width:40px;">Pnr No</th>
+                    <th style="width:200px;">Ad - Soyad</th>
+                    <th style="width:200px;">Mail</th>
+                    <th style="width:105px;">Kalkış Noktası</th>
+                    <th style="width:105px;">Varış Noktası</th>
+                    <th style="width:60px;">Koltuk No</th>
+                    <th style="width:60px;">Ticket No</th>
+                    <th style="width:80px;">Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.TicketPnrNo</td>
+                        <td>@item.TicketName @item.TicketSurname</td>
+
+                        <td>@item.TicketMail</td>
+                        <td>@item.TicketFromWhere</td>
+                        <td>@item.TicketToWhere</td>
+                        <td>@item.TicketSeatNo</td>
+                        <td>@item.TicketId</td>
+                        <td>
+                            <form asp-action="DeleteTicket" method="post" class="d-inline">
+                                <input type="hidden" name="ticketId" value="@item.TicketId" />
+                                <button type="submit" class="btn btn-sm btn-danger">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+        </table>
+   
+
+
+    <br />
+    <a asp-action="Index" asp-controller="Home" class="btn btn-primary mb-3">Ana Sayfaya Dön</a>
+</div>
