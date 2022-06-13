@@ -2,4 +2,5 @@ Default Olarak admin kullanıcısı oluşturuldu. Sadece Adminler yeni admin ekl
 
 Alınan bilet bilgisi kullanıcının e-mail adresine gönderilmektedir.
 
-Username : admin Password : Admin123.
+Username : admin 
+Password : Admin123.
